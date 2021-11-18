@@ -87,10 +87,6 @@ namespace Valve.VR.InteractionSystem
         public bool spewDebugText = false;
         public bool showDebugInteractables = false;
 
-        public SteamVR_Action_Boolean isgrabbed()
-        {
-            return grabPinchAction;
-        }
         public struct AttachedObject
         {
             public GameObject attachedObject;
