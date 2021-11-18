@@ -19,6 +19,7 @@ git config user.email "JohnDoe@stud.hs-kempten.de"
 - Change branch to develop
 ```sh
 git fetch origin develop
+git pull origin develop
 git checkout develop
 ```
 - Create new branch to work on
