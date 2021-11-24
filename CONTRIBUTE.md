@@ -50,6 +50,45 @@ git push --set-upstream origin your-branch-name
 ```sh
 git push
 ```
+## Folder Structure
+- Please check your own work and the merge requests of others if the following structure is kept
+```
++---GameAssets
+¦   +---Enemies
+¦   ¦   +---EnemyOne
+¦   ¦   ¦   +---Materials
+¦   ¦   ¦  	    +---Images
+¦   ¦   ¦   +---Models
+¦   ¦   ¦   +---Scripts
+¦   ¦   ¦   +---Sounds
+¦   ¦   +---EnemyTwo
+¦   ¦       +---Materials
+¦   ¦      	    +---Images
+¦   ¦       +---Models
+¦   ¦       +---Scripts
+¦   ¦       +---Sounds
+¦   ¦   +---Scripts
+¦   +---Level
+¦   ¦   +---Materials
+¦   ¦       +---Images
+¦   ¦   +---Models
+¦   ¦   +---Scripts
+¦   ¦   +---Sounds
+¦   +---PlayerPC
+¦   +---PlayerVR
+¦       +---Materials
+¦   	    +---Images
+¦       +---Models
+¦       +---Scripts
+¦       +---Sounds
++---Plugins
+¦   +---Cyberith
+¦   +---SteamVR
+¦   +---SteamVR-Resources
+¦   +---XR
++---Scenes
++---StreamingAssets
+```
 ## Create a Merge request
 - Goto [merge requests](https://ops.hs-kempten.de/ChristophBichlmeier/2021-gelab-vr-shooter-bichlmeier/-/merge_requests) and create a new request.
 - If you want someone to look over your changes add them to the reviewers. They will get notified by gitlab.
