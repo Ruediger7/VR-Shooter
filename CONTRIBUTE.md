@@ -50,4 +50,13 @@ git push --set-upstream origin your-branch-name
 ```sh
 git push
 ```
+## Create a Merge request
+- Goto [merge requests](https://ops.hs-kempten.de/ChristophBichlmeier/2021-gelab-vr-shooter-bichlmeier/-/merge_requests) and create a new request.
+- If you want someone to look over your changes add them to the reviewers. They will get notified by gitlab.
+
+## Update the current local branch
+```sh
+git fetch
+git pull
+```
 
