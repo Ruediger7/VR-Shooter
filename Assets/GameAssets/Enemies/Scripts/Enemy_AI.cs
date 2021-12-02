@@ -13,7 +13,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
     public float npcHP = 100;
     public float npcDamage = 10;
     public float attackRate = 0.5f;
-    private Transform firePoint;
+    public Transform firePoint;
     public GameObject npcDeadPrefab;
     private GameObject player;
 
@@ -36,19 +36,17 @@ public class Enemy_AI : MonoBehaviour, IEntity
         r = GetComponent<Rigidbody>();
         r.useGravity = true;
         r.isKinematic = true;
-        //test für Prefab
-        firePoint = transform.Find("FirePoint_Enemy");
-        //npcDeadPrefab=
+        //fürs Prefab muss der Player hier gesucht werden
         player = GameObject.Find("CVirtPlayerController");
-        //Problems in line 39/40 are irrelavant. caused by the spawner which will not be in final version
         playerTransform = player.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (agent.remainingDistance - attackDistance < 0.01f)
+        if ((agent.remainingDistance - attackDistance) < 0.01f)
         {
+            //Debug.Log(agent.remainingDistance - attackDistance);
             if (Time.time > nextAttackTime)
             {
                 nextAttackTime = Time.time + attackRate;
@@ -57,14 +55,13 @@ public class Enemy_AI : MonoBehaviour, IEntity
                 RaycastHit hit;
                 if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, attackDistance))
                 {
-                    //if caused the enemys to not shoot. dont know why might be important later
-                    //if (hit.transform.CompareTag("Player"))
-                    //{
+                    if (hit.transform.CompareTag("Player"))
+                    {
                         Debug.DrawLine(firePoint.position, firePoint.position + firePoint.forward * attackDistance, Color.cyan);
 
                         IEntity player = hit.transform.GetComponent<IEntity>();
                         player.ApplyDamage(npcDamage);
-                    //}
+                    }
                 }
            }
         }
