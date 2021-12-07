@@ -182,9 +182,9 @@ MonoBehaviour:
   attackDistance: 3
   movementSpeed: 4
   npcHP: 100
-  npcDamage: 5
+  npcDmg: 10
   attackRate: 0.5
-  firePoint: {fileID: 4039393822207490989}
+  FirePoint: {fileID: 4039393822207490989}
   npcDeadPrefab: {fileID: 5859159409563471691, guid: 5cc3240d36b0d0045b541c71c3861b75, type: 3}
-  player: {fileID: 0}
+  bulletPrefab: {fileID: 3471719125575513595, guid: 8b3b2bf4cdb154640b49c07d99834e1b, type: 3}
   playerTransform: {fileID: 0}

@@ -27,19 +27,10 @@ public class Gun : MonoBehaviour
         if (Time.time > nextFireTime)
         {
             nextFireTime = Time.time + fireRate;
-
-            RaycastHit hit;
-            if (Physics.Raycast(FirePoint.transform.position, FirePoint.transform.forward, out hit, 100))
-            {
-
-                Debug.Log("Treffer");
-            }
             GameObject spawnedBullet = Instantiate(bulletPrefab, FirePoint.position, FirePoint.rotation);
             SC_Bullet bullet = spawnedBullet.GetComponent<SC_Bullet>();
             bullet.SetDamage(weaponDmg);
-            //spawnedBullet.GetComponent<Rigidbody>().velocity = bulletSpeed * FirePoint.forward;
             //audioSource.PlayOneShot(audioClip);
-            //Destroy(spawnedBullet, 2);
         }
     }
 }
