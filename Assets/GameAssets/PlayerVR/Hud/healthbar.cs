@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class healthbar : MonoBehaviour
 {
+    public GameObject Player;
+
     // Changes the healthbar according to amount
     public void updateHealth(float amount)
     {
@@ -13,7 +15,7 @@ public class healthbar : MonoBehaviour
 
     private void Update()
     {
-        this.updateHealth(-10*Time.deltaTime);
+        this.updateHealth(Player.GetComponent<SC_DamageReceiver>().playerHP);
     }
 
     // Select Healthbar Image
