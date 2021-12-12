@@ -11,28 +11,29 @@ public class SC_DamageReceiver : MonoBehaviour, IEntity
 
     private void Update()
     {
+        //automatic HP regeneration
         if (timer >= 0)
         {
             timer -= Time.deltaTime;
         }
-        else if(playerHP<100)
+        else if(playerHP < 100)
         {
             playerHP += 10;
-            timer=0.5f;
+            timer = 0.5f;
         }
     }
     
     public void ApplyDamage(float points)
     {
         playerHP -= points;
+        Debug.Log(playerHP);
         timer = 3;
+
+        //Player is dead
         if (playerHP <= 0)
         {
-            //Player is dead
             //playerController.canMove = false;
             playerHP = 0;
         }
-    }
-
-    
+    } 
 }

@@ -1,18 +1,18 @@
 using System.Collections;
 using UnityEngine;
 
-public class SC_Bullet : MonoBehaviour
+public class Enemy_Bullet : MonoBehaviour
 {
     public float bulletSpeed = 345;
     public float hitForce = 50f;
     public float destroyAfter = 3.5f;
 
-    float currentTime = 0;
+    private float currentTime = 0;
+    private bool hasHit = false;
+    private float dmgPoints;
+
     Vector3 newPos;
     Vector3 oldPos;
-    bool hasHit = false;
-
-    float dmgPoints;
 
     // Start is called before the first frame update
     IEnumerator Start()
@@ -20,7 +20,7 @@ public class SC_Bullet : MonoBehaviour
         newPos = transform.position;
         oldPos = newPos;
 
-        while(currentTime<destroyAfter && !hasHit)
+        while (currentTime < destroyAfter && !hasHit)
         {
             Vector3 velocity = transform.forward * bulletSpeed;
             newPos += velocity * Time.deltaTime;
@@ -28,15 +28,14 @@ public class SC_Bullet : MonoBehaviour
             float distance = direction.magnitude;
             
             RaycastHit hit;
-            if(Physics.Raycast(oldPos,direction,out hit, distance))
+            if (Physics.Raycast(oldPos, direction, out hit, distance))
             {
-                //noch testen ob if notwendig ist oder auch durch Tag ersetzen
-                if (hit.rigidbody != null)
+                if (hit.transform.CompareTag("Player"))
                 {
-                    IEntity npc = hit.transform.GetComponent<IEntity>();
-                    if (npc != null)
+                    IEntity Player = hit.transform.GetComponent<IEntity>();
+                    if (Player != null)
                     {
-                        npc.ApplyDamage(dmgPoints);
+                        Player.ApplyDamage(dmgPoints);
                     }
                 }
                 newPos = hit.point;
@@ -44,6 +43,7 @@ public class SC_Bullet : MonoBehaviour
             }
             currentTime += Time.deltaTime;
             yield return new WaitForFixedUpdate();
+
             transform.position = newPos;
             oldPos = newPos;
         }
@@ -56,7 +56,7 @@ public class SC_Bullet : MonoBehaviour
     IEnumerator DestroyBullet()
     {
         hasHit = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
     }
 
