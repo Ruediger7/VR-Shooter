@@ -8,6 +8,7 @@ public class SC_DamageReceiver : MonoBehaviour, IEntity
     public float playerHP = 100;
     public float timer = 0.0f;
     public SC_DamageReceiver player;
+    private Canvas_Menu menu;
 
     private void Update()
     {
@@ -19,6 +20,11 @@ public class SC_DamageReceiver : MonoBehaviour, IEntity
         {
             playerHP += 10;
             timer=0.5f;
+        }
+
+        if(playerHP <= 0)
+        {
+            Dead();
         }
     }
     
@@ -34,5 +40,8 @@ public class SC_DamageReceiver : MonoBehaviour, IEntity
         }
     }
 
-    
+    public void Dead()
+    {
+        menu.GameOver(Canvas_Menu.kills);
+    }     
 }
