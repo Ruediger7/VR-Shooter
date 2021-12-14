@@ -75,6 +75,8 @@ public class Enemy_AI : MonoBehaviour, IEntity
             npcDead.GetComponent<Rigidbody>().velocity = (-(playerTransform.position - transform.position).normalized * 8) + new Vector3(0, 5, 0);
             Destroy(npcDead, 10);
             Destroy(gameObject);
+
+            Canvas_Menu.kills += 1;
         }
     }
 
