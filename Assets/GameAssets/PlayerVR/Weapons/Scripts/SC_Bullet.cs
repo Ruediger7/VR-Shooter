@@ -7,6 +7,7 @@ public class SC_Bullet : MonoBehaviour
     public float hitForce = 50f;
     public float destroyAfter = 3.5f;
 
+    private LineRenderer bulletTrail;
     float currentTime = 0;
     Vector3 newPos;
     Vector3 oldPos;
@@ -19,6 +20,8 @@ public class SC_Bullet : MonoBehaviour
     {
         newPos = transform.position;
         oldPos = newPos;
+        //bulletTrail = GetComponent<LineRenderer>();
+	//bulletTrail.SetPosition(0,newPos);
 
         while(currentTime<destroyAfter && !hasHit)
         {
@@ -26,7 +29,7 @@ public class SC_Bullet : MonoBehaviour
             newPos += velocity * Time.deltaTime;
             Vector3 direction = newPos - oldPos;
             float distance = direction.magnitude;
-            
+      
             RaycastHit hit;
             if(Physics.Raycast(oldPos,direction,out hit, distance))
             {
@@ -45,6 +48,7 @@ public class SC_Bullet : MonoBehaviour
             currentTime += Time.deltaTime;
             yield return new WaitForFixedUpdate();
             transform.position = newPos;
+	    //bulletTrail.SetPosition(1,newPos);
             oldPos = newPos;
         }
         if (!hasHit)
