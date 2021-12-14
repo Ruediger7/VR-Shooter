@@ -18,8 +18,5 @@ public class killcounter : MonoBehaviour
         
         text.GetComponent<Text>().text = "Kills: " +  killamount;
     }
-    
-    public int getKills() {
-        return killamount;
-    }
+
 }

@@ -18,6 +18,7 @@ public class healthbar : MonoBehaviour
     private void Update()
     {
         this.updateHealth(Player.GetComponent<SC_DamageReceiver>().playerHP);
+        this.updateHealth(50);
     }
 
 }

@@ -1462,9 +1462,10 @@ GameObject:
   - component: {fileID: 2274214999945037181}
   - component: {fileID: 2169285561008051335}
   - component: {fileID: 2487621491921723019}
+  - component: {fileID: 8581050628753435058}
   m_Layer: 0
   m_Name: CVirtPlayerController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1520,7 +1521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deviceType: 0
   decouplingType: 0
-  activateHaptic: 1
+  activateHaptic: 0
   calibrateOnConnect: 0
 --- !u!114 &2273286878930397147
 MonoBehaviour:
@@ -1765,6 +1766,7 @@ MonoBehaviour:
   playerHP: 100
   timer: 0
   player: {fileID: 2169285561008051335}
+  menu: {fileID: 3807067230062953236}
 --- !u!114 &2487621491921723019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1793,6 +1795,20 @@ MonoBehaviour:
     actionPath: /actions/default/in/HeadsetOnHead
     needsReinit: 0
   allowToggleTo2D: 1
+--- !u!136 &8581050628753435058
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2169285561008051333}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.6452699
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8226347, z: 0}
 --- !u!1 &2169285563199932197
 GameObject:
   m_ObjectHideFlags: 0
@@ -4891,6 +4907,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2168309245828751197}
     m_Modifications:
+    - target: {fileID: 7577571357927443508, guid: c639c33bb929c6b4d881c160e5e03dcc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: be10c67a72c607e4eb00ddd36a9dff84, type: 3}
+    - target: {fileID: 7577571359319572766, guid: c639c33bb929c6b4d881c160e5e03dcc, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 2169285561008051333}
     - target: {fileID: 9102539798579412647, guid: c639c33bb929c6b4d881c160e5e03dcc, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -5108,5 +5132,10 @@ PrefabInstance:
 --- !u!224 &3807067230062953239 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2236349570254803103, guid: 6e80ca3ff5798f741b969a655d20aee2, type: 3}
+  m_PrefabInstance: {fileID: 3160532346316018568}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3807067230062953236 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2236349570254803100, guid: 6e80ca3ff5798f741b969a655d20aee2, type: 3}
   m_PrefabInstance: {fileID: 3160532346316018568}
   m_PrefabAsset: {fileID: 0}
