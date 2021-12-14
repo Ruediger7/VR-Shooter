@@ -8,10 +8,12 @@ public class SC_DamageReceiver : MonoBehaviour, IEntity
     public float playerHP = 100;
     public float timer = 0.0f;
     public SC_DamageReceiver player;
+    public GameObject menu;
 
     private void Update()
     {
         //automatic HP regeneration
+	/*
         if (timer >= 0)
         {
             timer -= Time.deltaTime;
@@ -21,6 +23,7 @@ public class SC_DamageReceiver : MonoBehaviour, IEntity
             playerHP += 10;
             timer = 0.5f;
         }
+	*/
     }
     
     public void ApplyDamage(float points)
@@ -34,6 +37,12 @@ public class SC_DamageReceiver : MonoBehaviour, IEntity
         {
             //playerController.canMove = false;
             playerHP = 0;
+            Dead();
         }
-    } 
+    }
+
+    public void Dead()
+    {
+        menu.GetComponent<Canvas_Menu>().GameOver(GameObject.Find("Killcounter_Hud").GetComponent<killcounter>().getKills());
+    }     
 }

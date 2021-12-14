@@ -46,7 +46,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Vector3.Distance(player.transform.position, this.transform.position));
+        //Debug.Log(Vector3.Distance(player.transform.position, this.transform.position));
         if (Vector3.Distance(player.transform.position, this.transform.position) < attackDistance)     //((agent.remainingDistance - attackDistance) < 0.01f)
         {
             if (Time.time > nextAttackTime)
@@ -75,6 +75,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
             npcDead.GetComponent<Rigidbody>().velocity = (-(playerTransform.position - transform.position).normalized * 8) + new Vector3(0, 5, 0);
             Destroy(npcDead, 10);
             Destroy(gameObject);
+            GameObject.Find("Killcounter_Hud").GetComponent<killcounter>().updateKill();
         }
     }
 
