@@ -166,8 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14688ee40a5ac1148b2230029c5ceb13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 3
-  aggroRange: 10
+  attackDistance: 6
+  aggroRange: 15
   movementSpeed: 4
   npcHP: 100
   npcDmg: 10
