@@ -27,6 +27,8 @@ public class Enemy_AI : MonoBehaviour, IEntity
     NavMeshAgent agent;
     Rigidbody r;
 
+    AudioSource asource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
         //looking for Player here
         player = GameObject.Find("CVirtPlayerController");
         playerTransform = player.transform;
+        asource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -76,6 +79,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
             Destroy(npcDead, 10);
             Destroy(gameObject);
             GameObject.Find("Killcounter_Hud").GetComponent<killcounter>().updateKill();
+            asource.Play(0);
         }
     }
 
