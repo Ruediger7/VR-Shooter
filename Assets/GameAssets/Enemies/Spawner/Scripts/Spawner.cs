@@ -9,14 +9,17 @@ public class Spawner : MonoBehaviour
     public float waveTime = 60f;
     public int anzEnemys = 5;
     private float timer = 0f;
+    public GameStart gameStart; 
     void Start()
     {
-        
+        gameStart = FindObjectOfType<GameStart>();
     }
 
     
     void Update()
     {
+        if (!gameStart.gameStarted) return;
+
         timer += Time.deltaTime;
         if(timer >= waveTime)
         {
