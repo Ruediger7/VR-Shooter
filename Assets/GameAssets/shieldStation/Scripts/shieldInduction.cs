@@ -26,7 +26,7 @@ public class shieldInduction : MonoBehaviour
     }
 
 
-    private void enableRandomStation()
+    public void enableRandomStation()
     {
         // nachdem eine Station benutzt wurde wird zufällig eine neue aktiviert
         int random = Random.Range(0, (stations.Length - 1));
