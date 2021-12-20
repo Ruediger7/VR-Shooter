@@ -19,6 +19,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
     public Transform FirePoint;
     public GameObject npcDeadPrefab;
     public GameObject bulletPrefab;
+    public GameStart gameStart;
 
     private GameObject player;
     private Transform playerTransform;
@@ -41,6 +42,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
         //looking for Player here
         player = GameObject.Find("CVirtPlayerController");
         playerTransform = player.transform;
+        gameStart = FindObjectOfType<GameStart>();
     }
 
     // Update is called once per frame
