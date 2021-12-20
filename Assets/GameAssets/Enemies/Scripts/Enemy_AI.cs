@@ -24,6 +24,8 @@ public class Enemy_AI : MonoBehaviour, IEntity
     private GameObject player;
     private Transform playerTransform;
     private float nextAttackTime = 0;
+    [Range(0, 360f)]
+    public float viewAngle = 90f;
     
     NavMeshAgent agent;
     Rigidbody r;
@@ -42,14 +44,16 @@ public class Enemy_AI : MonoBehaviour, IEntity
         //looking for Player here
         player = GameObject.Find("CVirtPlayerController");
         playerTransform = player.transform;
+        //the Number given to RandomNavSphere determines the radius in which the random Point will be generated
+        agent.destination = RandomNavSphere(this.transform.position, 20);
+        Debug.Log(agent.destination);
         gameStart = FindObjectOfType<GameStart>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(Vector3.Distance(player.transform.position, this.transform.position));
-        if (Vector3.Distance(player.transform.position, this.transform.position) < attackDistance)     //((agent.remainingDistance - attackDistance) < 0.01f)
+        if (Vector3.Distance(player.transform.position, this.transform.position) < attackDistance)
         {
             if (Time.time > nextAttackTime)
             {
@@ -59,11 +63,43 @@ public class Enemy_AI : MonoBehaviour, IEntity
             }
         }
 
-        if (Vector3.Distance(playerTransform.position,transform.position) <= aggroRange) {
-            //Move towards player
-            agent.destination = playerTransform.position;
-            //Look at Player
-            transform.LookAt(new Vector3(playerTransform.transform.position.x, transform.position.y, playerTransform.position.z));
+        //if (Vector3.Distance(playerTransform.position, transform.position) <= aggroRange) 
+        //{
+        //    //Move towards player
+        //    agent.destination = playerTransform.position;
+        //    //Look at Player
+        //    transform.LookAt(new Vector3(playerTransform.transform.position.x, transform.position.y, playerTransform.position.z));
+        //}
+
+        if (Vector3.Distance(this.transform.position, player.transform.position) <= aggroRange)
+        {
+            Vector3 richtungZumZiel = player.transform.position - transform.position;
+            float winkelZumZiel = Vector3.Angle(transform.forward, richtungZumZiel);
+            if (winkelZumZiel < viewAngle / 2f)
+            {
+                //Move towards player
+                agent.destination = playerTransform.position;
+                //Look at Player
+                transform.LookAt(new Vector3(playerTransform.transform.position.x, transform.position.y, playerTransform.position.z));
+                Debug.DrawLine(transform.position, player.transform.position, Color.red);
+            }
+            else
+            {
+                Debug.DrawLine(transform.position, transform.forward, Color.green);
+            }
+        }
+
+        //if the agent reached his current goal, give him a new one
+        else if(!agent.pathPending)
+        {
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if(agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    agent.destination = RandomNavSphere(this.transform.position, 20);
+                }
+            }
+            
         }
     }
 
@@ -86,5 +122,19 @@ public class Enemy_AI : MonoBehaviour, IEntity
         GameObject spawnedBullet = Instantiate(bulletPrefab, FirePoint.position, FirePoint.rotation);
         Enemy_Bullet bullet = spawnedBullet.GetComponent<Enemy_Bullet>();
         bullet.SetDamage(npcDmg);
+    }
+
+    //generates a random Point around the Enemy and then determines the nearest Point on the Navmesh
+    public static Vector3 RandomNavSphere(Vector3 origin, float distance)
+    {
+        Vector3 randomDirection = Random.insideUnitSphere * distance;
+
+        randomDirection += origin;
+
+        NavMeshHit navHit;
+
+        NavMesh.SamplePosition(randomDirection, out navHit, distance, 1);
+
+        return navHit.position;
     }
 }
