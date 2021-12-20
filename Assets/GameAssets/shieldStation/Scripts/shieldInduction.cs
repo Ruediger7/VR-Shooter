@@ -14,15 +14,18 @@ public class shieldInduction : MonoBehaviour
         stations = FindObjectOfType<shieldStations>().stations;
     }
 
-
-    // Update is called once per frame
-    private void Update()
-    {
-        if(Vector3.Distance(playerController.transform.position, transform.position) <= healRadius)
+    void OnTriggerEnter(Collider other) {
+        if (Vector3.Distance(playerController.transform.position, transform.position) <= healRadius)
         {
             playerController.GetComponent<SC_DamageReceiver>().playerHP = 100;
             enableRandomStation();
         }
+    }
+
+    // Update is called once per frame
+    private void Update()
+    {
+       
     }
 
 
@@ -34,7 +37,6 @@ public class shieldInduction : MonoBehaviour
         if (stations[random].active) //dieses GameObjekt
         {
             int newNumber = ((stations.Length - 1) - random);
-            Debug.Log(random + " : " + (newNumber));
             stations[newNumber].SetActive(true);
            
         }
