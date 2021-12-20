@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3651769227921478942}
   - component: {fileID: 3651769227921478940}
   m_Layer: 0
-  m_Name: shieldStation_1
+  m_Name: shieldStation
   m_TagString: shieldRegenStation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

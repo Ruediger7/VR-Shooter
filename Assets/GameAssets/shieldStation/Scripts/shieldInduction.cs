@@ -5,7 +5,6 @@ using UnityEngine;
 public class shieldInduction : MonoBehaviour
 {
     private GameObject[] stations;
-    public float healRadius = 2;
     public GameObject playerController;
 
     // Start is called before the first frame update
@@ -15,7 +14,7 @@ public class shieldInduction : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        if (Vector3.Distance(playerController.transform.position, transform.position) <= healRadius)
+        if (other.bounds.Contains(playerController.transform.position))
         {
             playerController.GetComponent<SC_DamageReceiver>().playerHP = 100;
             enableRandomStation();
