@@ -173,8 +173,10 @@ MonoBehaviour:
   npcDmg: 10
   attackRate: 0.5
   FirePoint: {fileID: 1696414705414249240}
-  npcDeadPrefab: {fileID: 5859159409563471691, guid: 5cc3240d36b0d0045b541c71c3861b75, type: 3}
+  npcDeadPrefab: {fileID: 8634401009023519748, guid: 85a40faca480bf242bbd5089e4f17370, type: 3}
   bulletPrefab: {fileID: 3471719125575513595, guid: 8b3b2bf4cdb154640b49c07d99834e1b, type: 3}
+  gameStart: {fileID: 0}
+  viewAngle: 90
 --- !u!136 &9218449190873236324
 CapsuleCollider:
   m_ObjectHideFlags: 0
