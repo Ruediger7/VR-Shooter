@@ -46,14 +46,11 @@ public class Enemy_AI : MonoBehaviour, IEntity
         //looking for Player here
         player = GameObject.Find("CVirtPlayerController");
         playerTransform = player.transform;
-<<<<<<< HEAD
         asource = GetComponent<AudioSource>();
-=======
         //the Number given to RandomNavSphere determines the radius in which the random Point will be generated
         agent.destination = RandomNavSphere(this.transform.position, 20);
         Debug.Log(agent.destination);
         gameStart = FindObjectOfType<GameStart>();
->>>>>>> origin/develop
     }
 
     // Update is called once per frame
