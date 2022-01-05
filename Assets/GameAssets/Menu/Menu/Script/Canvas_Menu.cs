@@ -9,15 +9,13 @@ public class Canvas_Menu : MonoBehaviour
     public Image img;
     public Button btn;
     public GameObject canvas;
+    public Camera camera;
 
     private Color original;
     public static int kills;
 
-    private Camera camera;
-
     private void Start()
     {
-        camera = GetComponent<Camera>();
         kills = 0;
 
         btn.onClick.AddListener(ShowHighscore);
