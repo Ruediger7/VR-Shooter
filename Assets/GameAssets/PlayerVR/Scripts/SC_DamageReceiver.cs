@@ -9,6 +9,7 @@ public class SC_DamageReceiver : MonoBehaviour, IEntity
     public float timer = 0.0f;
     public SC_DamageReceiver player;
     public GameObject menu;
+    public AudioClip deathsound;
 
     private void Update()
     {
@@ -38,6 +39,7 @@ public class SC_DamageReceiver : MonoBehaviour, IEntity
             //playerController.canMove = false;
             playerHP = 0;
             Dead();
+            AudioSource.PlayClipAtPoint(deathsound, menu.transform.position);
         }
     }
 
