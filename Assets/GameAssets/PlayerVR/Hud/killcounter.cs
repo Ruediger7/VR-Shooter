@@ -22,4 +22,8 @@ public class killcounter : MonoBehaviour
     public int getKills() {
         return killamount;
     }
+    public void setKills(int kills)
+    {
+        killamount = kills;
+    }
 }

@@ -21,16 +21,17 @@ public class GameStart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gameStarted && SteamVR_Actions.default_shoot.GetLastStateDown(SteamVR_Input_Sources.Any))
+        if (!gameStarted && SteamVR_Actions.default_shoot.GetLastStateDown(SteamVR_Input_Sources.Any) && !gameOver)
         {
             startGame();
         }
 
-        if (gameStarted)
+        if (gameStarted && !gameOver)
         {
             if(GetComponent<SC_DamageReceiver>().playerHP <= 0)
             {
                 endGame();
+                restartText.GetComponent<Text>().enabled = true;
             }
         }
         if(gameOver)
@@ -39,19 +40,21 @@ public class GameStart : MonoBehaviour
             {
                 restartCounter++;
             }
-            else
-            {
-                restartText.GetComponent<Text>().text = "Du hast verloren! Restarte das Game indem du mit deiner Waffe einige male in die Luft schiesst!";
+            
+                
                 if (restartCounter >= 5)
                 {
                     gameOver = false;
                     gameStarted = true;
+                    restartCounter = 0;
                     //SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single); Funktioniert nicht da der PlayerController den Tag DontDestroyonLoad hat
                     cVirtPlayerController.GetComponent<SC_DamageReceiver>().playerHP = 100;
                     cVirtPlayerController.transform.position = new Vector3(-15, 0, 19);
-                    
-                }
+                    FindObjectOfType<killcounter>().setKills(0);
+                    restartText.GetComponent<Text>().enabled = false;
+                FindObjectOfType<Canvas_Menu>().DeactivateCanvas();
             }
+            
         }
     }
     public void startGame()

@@ -19,7 +19,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
     public Transform FirePoint;
     public GameObject npcDeadPrefab;
     public GameObject bulletPrefab;
-    public GameStart gameStart;
+    //private GameStart gameStart;
 
     private GameObject player;
     private Transform playerTransform;
@@ -47,7 +47,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
         //the Number given to RandomNavSphere determines the radius in which the random Point will be generated
         agent.destination = RandomNavSphere(this.transform.position, 20);
         Debug.Log(agent.destination);
-        gameStart = FindObjectOfType<GameStart>();
+        //gameStart = FindObjectOfType<GameStart>();
     }
 
     // Update is called once per frame

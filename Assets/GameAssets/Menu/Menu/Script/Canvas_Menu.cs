@@ -71,7 +71,7 @@ public class Canvas_Menu : MonoBehaviour
         Debug.Log("Game Over");
         original = text.color;
         text.color = Color.red;
-        ChangeText("Game Over \n Score: " + kills);
+        ChangeText("Game Over \n Score: " + kills + "\n Schiesse einige male um neuzustarten!");
         ActivateHighscoreButton();
 
     }
