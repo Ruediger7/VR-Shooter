@@ -20,6 +20,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
     public GameObject npcDeadPrefab;
     public GameObject bulletPrefab;
     //private GameStart gameStart;
+    public Animator animator;
 
     private GameObject player;
     private Transform playerTransform;
@@ -55,6 +56,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
     {
         if (Vector3.Distance(player.transform.position, this.transform.position) < attackDistance)
         {
+            animator.SetBool("walks", false);
             if (Time.time > nextAttackTime)
             {
                 Fire();
@@ -73,6 +75,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
 
         if (Vector3.Distance(this.transform.position, player.transform.position) <= aggroRange)
         {
+            animator.SetBool("walks", true);
             Vector3 richtungZumZiel = player.transform.position - transform.position;
             float winkelZumZiel = Vector3.Angle(transform.forward, richtungZumZiel);
             if (winkelZumZiel < viewAngle / 2f)
@@ -92,6 +95,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
         //if the agent reached his current goal, give him a new one
         else if(!agent.pathPending)
         {
+            animator.SetBool("walks", true);
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
                 if(agent.hasPath || agent.velocity.sqrMagnitude == 0f)
