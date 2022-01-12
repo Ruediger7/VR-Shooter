@@ -9,6 +9,7 @@ public class Canvas_Menu : MonoBehaviour
     public Image img;
     public Button btn;
     public GameObject canvas;
+    public Camera camera;
 
     private Color original;
     public static int kills;
@@ -29,6 +30,31 @@ public class Canvas_Menu : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        Ray ray = camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            if(hit.collider != null)
+            {
+                if(hit.distance <= 3.0f)
+                {
+                    Vector3 oldposition = camera.transform.position;
+                    oldposition.z += 3.0f;
+                    Vector3 newposition;
+                    newposition.x = oldposition.x;
+                    newposition.y = oldposition.y;
+                    newposition.z = oldposition.z - (3.0f - hit.distance);
+
+                    this.gameObject.transform.position = newposition;
+                }
+                else
+                {
+                    Vector3 position = camera.transform.position;
+                    position.z += 3.0f;
+                    this.gameObject.transform.position = position;
+                }
+            }
+        }
     }
 
     IEnumerator DelayedText()
