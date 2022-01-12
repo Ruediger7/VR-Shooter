@@ -331,6 +331,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1033511392186770535, guid: b9721ad5a7be053458c23b7bef8cdd3c, type: 3}
   m_PrefabInstance: {fileID: 1290965822}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &239015485 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5455451554485846804, guid: c127258e3b9ab0b4b8c5e2664e4c8e5b, type: 3}
+  m_PrefabInstance: {fileID: 1368141948}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &277152466 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3651769227921478937, guid: c1dba3bb367058242af77193b785aa53, type: 3}
@@ -723,12 +728,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8105280901137941910, guid: 90eed075b8e97924182e00d7980f01e6, type: 3}
       propertyPath: waveTime
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8105280901137941910, guid: 90eed075b8e97924182e00d7980f01e6, type: 3}
       propertyPath: anzEnemys
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8105280901137941910, guid: 90eed075b8e97924182e00d7980f01e6, type: 3}
+      propertyPath: gameStart
+      value: 
+      objectReference: {fileID: 1240262959}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90eed075b8e97924182e00d7980f01e6, type: 3}
 --- !u!1001 &975998783
@@ -788,12 +797,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8105280901137941910, guid: 90eed075b8e97924182e00d7980f01e6, type: 3}
       propertyPath: waveTime
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8105280901137941910, guid: 90eed075b8e97924182e00d7980f01e6, type: 3}
       propertyPath: anzEnemys
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8105280901137941910, guid: 90eed075b8e97924182e00d7980f01e6, type: 3}
+      propertyPath: gameStart
+      value: 
+      objectReference: {fileID: 1240262959}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90eed075b8e97924182e00d7980f01e6, type: 3}
 --- !u!1001 &1117614879
@@ -1262,6 +1275,10 @@ PrefabInstance:
       propertyPath: movementSpeedMultiplier
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 3807067230062953227, guid: c127258e3b9ab0b4b8c5e2664e4c8e5b, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 239015485}
     - target: {fileID: 7874645101158623987, guid: c127258e3b9ab0b4b8c5e2664e4c8e5b, type: 3}
       propertyPath: Player
       value: 
@@ -1453,12 +1470,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8105280901137941910, guid: 90eed075b8e97924182e00d7980f01e6, type: 3}
       propertyPath: waveTime
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8105280901137941910, guid: 90eed075b8e97924182e00d7980f01e6, type: 3}
       propertyPath: anzEnemys
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8105280901137941910, guid: 90eed075b8e97924182e00d7980f01e6, type: 3}
+      propertyPath: gameStart
+      value: 
+      objectReference: {fileID: 1240262959}
+    - target: {fileID: 8105280901137941910, guid: 90eed075b8e97924182e00d7980f01e6, type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 5202054204035807503, guid: a0276c5b21cb30e44ab7111dc33b46d1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90eed075b8e97924182e00d7980f01e6, type: 3}
 --- !u!1 &1513879182

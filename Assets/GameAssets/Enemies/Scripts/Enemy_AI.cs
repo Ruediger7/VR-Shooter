@@ -107,7 +107,6 @@ public class Enemy_AI : MonoBehaviour, IEntity
         if(!agent.pathPending && PlayerInVision == false)
         {
             animator.SetBool("walks", true);
-            Debug.Log("test");
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
                 if(agent.hasPath || agent.velocity.sqrMagnitude == 0f)

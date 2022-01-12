@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7116470881947e149b908e4eb7dd37ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 4039393822596023490, guid: 93cc10f6d8ea98d4a8d1c2337290b51c, type: 3}
+  enemyPrefab: {fileID: 5202054204035807503, guid: a0276c5b21cb30e44ab7111dc33b46d1, type: 3}
   radius: 3
-  waveTime: 60
-  anzEnemys: 5
+  waveTime: 10
+  anzEnemys: 2
+  gameStart: {fileID: 0}

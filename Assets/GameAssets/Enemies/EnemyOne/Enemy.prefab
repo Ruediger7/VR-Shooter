@@ -140,7 +140,7 @@ MonoBehaviour:
   aggroRange: 15
   movementSpeed: 4
   npcHP: 100
-  npcDmg: 10
+  npcDmg: 5
   attackRate: 0.5
   FirePoint: {fileID: 3472620796264945584}
   npcDeadPrefab: {fileID: 8634401009023519748, guid: 85a40faca480bf242bbd5089e4f17370, type: 3}
