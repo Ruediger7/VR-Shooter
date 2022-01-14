@@ -32,28 +32,18 @@ public class Canvas_Menu : MonoBehaviour
     {
         Ray ray = camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, 5f))
         {
-            if(hit.collider != null)
-            {
-                if(hit.distance <= 3.0f)
-                {
-                    Vector3 oldposition = camera.transform.position;
-                    oldposition.z += 3.0f;
-                    Vector3 newposition;
-                    newposition.x = oldposition.x;
-                    newposition.y = oldposition.y;
-                    newposition.z = oldposition.z - (3.0f - hit.distance);
-
-                    this.gameObject.transform.position = newposition;
-                }
-                else
-                {
-                    Vector3 position = camera.transform.position;
-                    position.z += 3.0f;
-                    this.gameObject.transform.position = position;
-                }
-            }
+            this.gameObject.transform.position = hit.point - (ray.direction * 0.1f);
+            this.gameObject.transform.rotation = Quaternion.FromToRotation(-Vector3.forward, hit.normal);
+            //this.gameObject.transform.up = Vector3.Lerp(this.gameObject.transform.up, hit.normal,)
+            //this.gameObject.transform.RotateAround(this.gameObject.transform.position,this.gameObject.transform.up, hit.transform.localEulerAngles.y);
+        }
+        else
+        {
+            this.gameObject.transform.position = camera.transform.position + (ray.direction * 3f);
+            this.gameObject.transform.localRotation = Quaternion.identity;
+        
         }
     }
 
@@ -66,7 +56,7 @@ public class Canvas_Menu : MonoBehaviour
 
         ChangeText("Ziehe deine Waffe wenn du bereit bist los zu starten.");
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(5000000000);
 
         // Hier fehlt ein Event bei dem der Spieler seine Waffe zieht
         DeactivateCanvas();
