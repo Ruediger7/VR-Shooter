@@ -30,18 +30,21 @@ public class Canvas_Menu : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Ray ray = camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+        Vector3 direction = camera.transform.forward;
+        Vector3 origin = camera.transform.position;
+        origin.y = 1.5f;
+        direction.y = 0;
+        
+        Ray ray = new Ray(origin, direction);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 5f))
         {
             this.gameObject.transform.position = hit.point - (ray.direction * 0.1f);
-            this.gameObject.transform.rotation = Quaternion.FromToRotation(-Vector3.forward, hit.normal);
-            //this.gameObject.transform.up = Vector3.Lerp(this.gameObject.transform.up, hit.normal,)
-            //this.gameObject.transform.RotateAround(this.gameObject.transform.position,this.gameObject.transform.up, hit.transform.localEulerAngles.y);
-        }
+            this.gameObject.transform.forward = -hit.normal;
+            }
         else
         {
-            this.gameObject.transform.position = camera.transform.position + (ray.direction * 3f);
+            this.gameObject.transform.position = origin + (ray.direction * 5f);
             this.gameObject.transform.localRotation = Quaternion.identity;
         
         }
