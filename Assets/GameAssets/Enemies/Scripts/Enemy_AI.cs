@@ -19,7 +19,10 @@ public class Enemy_AI : MonoBehaviour, IEntity
     public Transform FirePoint;
     public GameObject npcDeadPrefab;
     public GameObject bulletPrefab;
-    public GameStart gameStart;
+    //private GameStart gameStart;
+    public Animator animator;
+    public GameObject Eyes;
+    private bool PlayerInVision = false;
 
     private GameObject player;
     private Transform playerTransform;
@@ -50,51 +53,63 @@ public class Enemy_AI : MonoBehaviour, IEntity
         //the Number given to RandomNavSphere determines the radius in which the random Point will be generated
         agent.destination = RandomNavSphere(this.transform.position, 20);
         Debug.Log(agent.destination);
-        gameStart = FindObjectOfType<GameStart>();
+        //gameStart = FindObjectOfType<GameStart>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(player.transform.position, this.transform.position) < attackDistance)
+        //checks if player is generally in vision-cone of enemy
+        Vector3 richtungZumZiel = player.transform.position - transform.position;
+        float winkelZumZiel = Vector3.Angle(transform.forward, richtungZumZiel);
+        if (winkelZumZiel < viewAngle / 2f)
         {
-            if (Time.time > nextAttackTime)
+            //check if robot can really see player or if his view is obstructed
+            RaycastHit hit;
+            if (Physics.Raycast(Eyes.transform.position, new Vector3(player.transform.position.x, Eyes.transform.position.y, player.transform.position.z) - Eyes.transform.position, out hit))
             {
-                Fire();
-                //time till next shot
-                nextAttackTime = Time.time + attackRate;
+                //if robot sees player, the agent gets his position
+                if (hit.collider.CompareTag("Player"))
+                {
+                    PlayerInVision = true;
+                    agent.destination = playerTransform.position;
+                    transform.LookAt(new Vector3(playerTransform.transform.position.x, transform.position.y, playerTransform.position.z));
+                    Debug.DrawLine(Eyes.transform.position, player.transform.position, Color.red);
+
+                    //if in Range shoot
+                    if (Vector3.Distance(player.transform.position, this.transform.position) < attackDistance)
+                    {
+                        animator.SetBool("walks", false);
+                        if (Time.time > nextAttackTime)
+                        {
+                            Fire();
+                            //time till next shot
+                            nextAttackTime = Time.time + attackRate;
+                        }
+                    }
+                    //if not in range start walking-animation as robot walks into range
+                    else
+                    {
+                        animator.SetBool("walks", true);
+                    }
+                }
+                //activates the random patrolling if player cant be seen
+                else
+                {
+                    PlayerInVision = false;
+                }
             }
         }
-
-        //if (Vector3.Distance(playerTransform.position, transform.position) <= aggroRange) 
-        //{
-        //    //Move towards player
-        //    agent.destination = playerTransform.position;
-        //    //Look at Player
-        //    transform.LookAt(new Vector3(playerTransform.transform.position.x, transform.position.y, playerTransform.position.z));
-        //}
-
-        if (Vector3.Distance(this.transform.position, player.transform.position) <= aggroRange)
+        //resets the PlayerInVision if player manages to get out of the cone
+        else
         {
-            Vector3 richtungZumZiel = player.transform.position - transform.position;
-            float winkelZumZiel = Vector3.Angle(transform.forward, richtungZumZiel);
-            if (winkelZumZiel < viewAngle / 2f)
-            {
-                //Move towards player
-                agent.destination = playerTransform.position;
-                //Look at Player
-                transform.LookAt(new Vector3(playerTransform.transform.position.x, transform.position.y, playerTransform.position.z));
-                Debug.DrawLine(transform.position, player.transform.position, Color.red);
-            }
-            else
-            {
-                Debug.DrawLine(transform.position, transform.forward, Color.green);
-            }
+            PlayerInVision = false;
         }
 
         //if the agent reached his current goal, give him a new one
-        else if(!agent.pathPending)
+        if(!agent.pathPending && PlayerInVision == false)
         {
+            animator.SetBool("walks", true);
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
                 if(agent.hasPath || agent.velocity.sqrMagnitude == 0f)
@@ -111,7 +126,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
         npcHP -= points;
         if (npcHP <= 0)
         {
-            //Replace Enemy with DEAD-Prefab and bouice it a little
+            //Replace Enemy with DEAD-Prefab and bounce it a little
             GameObject npcDead = Instantiate(npcDeadPrefab, transform.position, transform.rotation);
             npcDead.GetComponent<Rigidbody>().velocity = (-(playerTransform.position - transform.position).normalized * 8) + new Vector3(0, 5, 0);
             Destroy(npcDead, 10);
@@ -132,13 +147,9 @@ public class Enemy_AI : MonoBehaviour, IEntity
     public static Vector3 RandomNavSphere(Vector3 origin, float distance)
     {
         Vector3 randomDirection = Random.insideUnitSphere * distance;
-
         randomDirection += origin;
-
         NavMeshHit navHit;
-
         NavMesh.SamplePosition(randomDirection, out navHit, distance, 1);
-
         return navHit.position;
     }
 }
