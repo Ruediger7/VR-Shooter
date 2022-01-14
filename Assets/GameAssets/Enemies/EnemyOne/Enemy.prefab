@@ -148,6 +148,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3471719125575513595, guid: 8b3b2bf4cdb154640b49c07d99834e1b, type: 3}
   animator: {fileID: 5441984387541086807}
   Eyes: {fileID: 8599129183727728736}
+  shot: {fileID: 8300000, guid: aceca50841bdd744dbc39347c5a6110f, type: 3}
   viewAngle: 90
 --- !u!136 &2122564900434314931
 CapsuleCollider:
@@ -173,8 +174,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b0ca600cdacc44d4c8003d2b5626ae63, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 02fb112c4a583a1479028bd4715ce1eb, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

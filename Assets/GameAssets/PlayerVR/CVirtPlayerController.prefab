@@ -643,7 +643,7 @@ MonoBehaviour:
   timer: 0
   player: {fileID: 2169285561008051335}
   menu: {fileID: 3807067230062953236}
-  deathsound: {fileID: 0}
+  deathsound: {fileID: 8300000, guid: b0ca600cdacc44d4c8003d2b5626ae63, type: 3}
 --- !u!114 &2487621491921723019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -700,7 +700,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

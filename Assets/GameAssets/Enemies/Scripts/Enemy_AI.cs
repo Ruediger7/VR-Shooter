@@ -23,6 +23,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
     public Animator animator;
     public GameObject Eyes;
     private bool PlayerInVision = false;
+    public AudioClip shot;
 
     private GameObject player;
     private Transform playerTransform;
@@ -132,7 +133,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
             Destroy(npcDead, 10);
             Destroy(gameObject);
             GameObject.Find("Killcounter_Hud").GetComponent<killcounter>().updateKill();
-            asource.Play(0);
+            asource.Play();
         }
     }
 
@@ -141,6 +142,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
         GameObject spawnedBullet = Instantiate(bulletPrefab, FirePoint.position, FirePoint.rotation);
         Enemy_Bullet bullet = spawnedBullet.GetComponent<Enemy_Bullet>();
         bullet.SetDamage(npcDmg);
+        asource.PlayOneShot(shot);
     }
 
     //generates a random Point around the Enemy and then determines the nearest Point on the Navmesh

@@ -15,6 +15,7 @@ public class Footsteps : MonoBehaviour
         cc = GetComponent<CharacterController>();
         m_MyAudioSource = GetComponent<AudioSource>();
         m_MyAudioSource.Play();
+        m_MyAudioSource.loop = true;
     }
 
     // Update is called once per frame
