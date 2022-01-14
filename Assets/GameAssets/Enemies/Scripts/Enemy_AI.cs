@@ -23,6 +23,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
     public Animator animator;
     public GameObject Eyes;
     private bool PlayerInVision = false;
+    public AudioClip shot;
 
     private GameObject player;
     private Transform playerTransform;
@@ -32,6 +33,8 @@ public class Enemy_AI : MonoBehaviour, IEntity
     
     NavMeshAgent agent;
     Rigidbody r;
+
+    AudioSource asource;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +50,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
         //looking for Player here
         player = GameObject.Find("CVirtPlayerController");
         playerTransform = player.transform;
+        asource = GetComponent<AudioSource>();
         //the Number given to RandomNavSphere determines the radius in which the random Point will be generated
         agent.destination = RandomNavSphere(this.transform.position, 20);
         Debug.Log(agent.destination);
@@ -129,6 +133,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
             Destroy(npcDead, 10);
             Destroy(gameObject);
             GameObject.Find("Killcounter_Hud").GetComponent<killcounter>().updateKill();
+            asource.Play();
         }
     }
 
@@ -137,6 +142,7 @@ public class Enemy_AI : MonoBehaviour, IEntity
         GameObject spawnedBullet = Instantiate(bulletPrefab, FirePoint.position, FirePoint.rotation);
         Enemy_Bullet bullet = spawnedBullet.GetComponent<Enemy_Bullet>();
         bullet.SetDamage(npcDmg);
+        asource.PlayOneShot(shot);
     }
 
     //generates a random Point around the Enemy and then determines the nearest Point on the Navmesh

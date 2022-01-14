@@ -11,14 +11,21 @@ public class Gun : MonoBehaviour
     float nextFireTime = 0;
     public GameObject bulletPrefab;
     public Transform FirePoint;
+
+    AudioSource asource;
     //public AudioSource audioSource;
     //public AudioClip audioClip;
+    private void Start()
+    {
+        asource = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
         if (SteamVR_Actions.default_shoot.GetLastStateDown(SteamVR_Input_Sources.Any))
         {
             Fire();
+            asource.Play(0);
         }
     }
 
