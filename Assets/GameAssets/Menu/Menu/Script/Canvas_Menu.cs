@@ -20,8 +20,6 @@ public class Canvas_Menu : MonoBehaviour
 
         btn.onClick.AddListener(ShowHighscore);
 
-        Debug.Log("Start");
-
         btn.gameObject.SetActive(false);
 
         StartCoroutine(DelayedText());
@@ -52,14 +50,11 @@ public class Canvas_Menu : MonoBehaviour
 
     IEnumerator DelayedText()
     {
-        Debug.Log("Wait");
         yield return new WaitForSeconds(4);
-
-        Debug.Log("Over");
 
         ChangeText("Ziehe deine Waffe wenn du bereit bist los zu starten.");
 
-        yield return new WaitForSeconds(5000000000);
+        yield return new WaitForSeconds(50);
 
         // Hier fehlt ein Event bei dem der Spieler seine Waffe zieht
         DeactivateCanvas();
