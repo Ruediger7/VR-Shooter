@@ -14,10 +14,10 @@ The game is a classic VR shooter. You appear as a player in an abandoned office.
 - Decline the update to the new input system by Unity
 - Open the Scene "GameScene"
 
-## Project Supervisor:
+## Project Supervisor
 - Prof. Dr. Bichlmeier
 
-## Contributers to this Project:
+## Contributers to this Project
 - Alex Dosch
 - Christoph Fleschutz
 - Thomas Schumacher
