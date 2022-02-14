@@ -26,3 +26,5 @@ The game is a classic VR shooter. You appear as a player in an abandoned office.
 - Richard Mayer
 - Bruno Nölte
 - Nikolas Vollmer
+
+I mainly did the Enemy_AI.cs and the Bullet.cs
